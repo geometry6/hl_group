@@ -9,6 +9,28 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Ensure all icons are perfectly centered */
+    .fa, .fas, .far, .fal, .fab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      text-align: center;
+    }
+    /* Specific styles for contact section icons */
+    .icon-circle i {
+      width: 100%;
+      height: 100%;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Fix for icons in headers */
+    h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
+      display: inline-flex !important;
+    }
+  </style>
 </head>
 <body class="bg-dark text-light">
   <!-- Bootstrap Navbar -->
@@ -287,28 +309,126 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="container py-5 reveal">
-    <h2 class="text-center mb-5">Contact Us</h2>
-    <div class="row justify-content-center mb-4">
-      <div class="col-md-6">
-        <div class="bg-secondary rounded-4 p-4 text-light mb-4">
-          <p class="mb-2"><strong>Email:</strong> <a href="mailto:hlgroupshpk@gmail.com" class="link-light">hlgroupshpk@gmail.com</a></p>
-          <p class="mb-0"><strong>Phone:</strong> <a href="tel:+38348710707" class="link-light">+383 48 710 707</a></p>
+  <section id="contact" class="py-5 reveal" style="background: linear-gradient(180deg, #121212 0%, #1e1e1e 100%);">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-center mb-2">Contact Us</h2>
+          <div class="divider-custom mx-auto mb-4">
+            <div class="divider-custom-line bg-light" style="height: 2px; width: 60px; margin: 0 auto;"></div>
+          </div>
+          <p class="lead text-light opacity-75 mb-5">We're ready to bring your electrical projects to life. Reach out to discuss how we can help.</p>
         </div>
-        <form action="https://formsubmit.co/hlgroupshpk@gmail.com" method="POST" class="contact-form">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="thankyou.html">
-          <div class="mb-3">
-            <input type="text" name="name" class="form-control form-control-lg bg-dark text-light border-0" placeholder="Your Name" required>
+      </div>
+      
+      <!-- Contact Information -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+          <div class="card bg-dark border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card-header bg-secondary py-3">
+              <h3 class="h4 mb-0 text-center fw-bold text-light"><i class="fas fa-address-card me-2"></i>Contact Information</h3>
+            </div>
+            <div class="card-body p-4">
+              <div class="row g-4 justify-content-center">
+                <!-- Email -->
+                <div class="col-md-4 col-lg-3 d-flex justify-content-center">
+                  <div class="contact-item p-3 w-100 rounded-3 text-center d-flex flex-column" style="background-color: rgba(255,255,255,0.05); backdrop-filter: blur(5px);">
+                    <div class="d-flex justify-content-center mb-3">
+                      <i class="fas fa-envelope text-light" style="font-size: 1.5rem; margin: 0.5rem 0;"></i>
+                    </div>
+                    <h5 class="text-light mb-3">Email Us</h5>
+                    <a href="mailto:hlgroupshpk@gmail.com" class="text-light text-decoration-none d-block">
+                      hlgroupshpk@gmail.com
+                    </a>
+                  </div>
+                </div>
+                
+                <!-- Phone 1 -->
+                <div class="col-md-4 col-lg-3 d-flex justify-content-center">
+                  <div class="contact-item p-3 w-100 rounded-3 text-center d-flex flex-column" style="background-color: rgba(255,255,255,0.05); backdrop-filter: blur(5px);">
+                    <div class="d-flex justify-content-center mb-3">
+                      <i class="fas fa-phone-alt text-light" style="font-size: 1.5rem; margin: 0.5rem 0;"></i>
+                    </div>
+                    <h5 class="text-light mb-3">Call Us</h5>
+                    <a href="tel:+38349180707" class="text-light text-decoration-none d-block">
+                      +383 49 180 707
+                    </a>
+                  </div>
+                </div>
+                
+                <!-- Phone 2 -->
+                <div class="col-md-4 col-lg-3 d-flex justify-content-center">
+                  <div class="contact-item p-3 w-100 rounded-3 text-center d-flex flex-column" style="background-color: rgba(255,255,255,0.05); backdrop-filter: blur(5px);">
+                    <div class="d-flex justify-content-center mb-3">
+                      <i class="fas fa-phone-alt text-light" style="font-size: 1.5rem; margin: 0.5rem 0; transform: rotate(15deg);"></i>
+                    </div>
+                    <h5 class="text-light mb-3">Call Us</h5>
+                    <a href="tel:+38348710707" class="text-light text-decoration-none d-block">
+                      +383 48 710 707
+                    </a>
+                  </div>
+                </div>
+                
+
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <input type="email" name="email" class="form-control form-control-lg bg-dark text-light border-0" placeholder="Your Email" required>
+        </div>
+      </div>
+      
+      <!-- Contact Form -->
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card bg-dark border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card-header bg-secondary py-3">
+              <h3 class="h4 mb-0 text-center fw-bold text-light"><i class="fas fa-paper-plane me-2"></i>Send Us a Message</h3>
+            </div>
+            <div class="card-body p-4">
+              <div class="row">
+                <div class="col-lg-10 mx-auto">
+                  <form action="https://formsubmit.co/hlgroupshpk@gmail.com" method="POST" class="contact-form">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="thankyou.html">
+                    <input type="hidden" name="_subject" value="New message from HL Group website">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <div class="row g-4">
+                      <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                          <input type="text" name="name" class="form-control bg-black bg-opacity-50 text-light border-secondary" id="floatingName" placeholder="Your Name" required>
+                          <label for="floatingName" class="text-light opacity-75">Your Name</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                          <input type="email" name="email" class="form-control bg-black bg-opacity-50 text-light border-secondary" id="floatingEmail" placeholder="Your Email" required>
+                          <label for="floatingEmail" class="text-light opacity-75">Your Email</label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-floating mb-3">
+                      <input type="text" name="subject" class="form-control bg-black bg-opacity-50 text-light border-secondary" id="floatingSubject" placeholder="Subject">
+                      <label for="floatingSubject" class="text-light opacity-75">Subject</label>
+                    </div>
+                    
+                    <div class="form-floating mb-4">
+                      <textarea name="message" class="form-control bg-black bg-opacity-50 text-light border-secondary" placeholder="Your Message" id="floatingMessage" style="height: 150px" required></textarea>
+                      <label for="floatingMessage" class="text-light opacity-75">Your Message</label>
+                    </div>
+                    
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-light btn-lg px-5 py-3 fw-bold shadow-sm">
+                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <textarea name="message" class="form-control form-control-lg bg-dark text-light border-0" placeholder="Your Message" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-lg btn-light fw-bold px-4 py-2 shadow">Send Message</button>
-        </form>
+        </div>
       </div>
     </div>
   </section>
