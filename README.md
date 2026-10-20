@@ -1,13 +1,10 @@
 # HL Group Website
 
-A modern, dark-themed, responsive static website for HL Group, an electrical installation company specializing in:
+Static bilingual website for HL Group (electrical design, installations, lighting and smart home), served at https://hlgroup-ks.com/ via GitHub Pages.
 
-- Electrical Design & Measurement
-- Civil & Industrial Installations
-- Smart Home & Security Systems
+- `index.html` — Albanian, `en.html` — English
+- `projects.js` / `projects-en.js` — portfolio data (keep both in sync; images live in `assets/projects/`)
+- `polish.css` — latest typography, tap-target and footer refinements
+- Contact form posts to FormSubmit (`hlgroupshpk@gmail.com`)
 
-## Features
-
-- Dark UI with accent colors
-- Smooth scroll reveal animations
-- Active navigation link highlighting
+No build step: every push to `master` deploys through `.github/workflows/static.yml`.

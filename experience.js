@@ -1,0 +1,34 @@
+(() => {
+ const en=document.documentElement.lang==='en',t=(sq,eng)=>en?eng:sq;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const hero=document.querySelector('.hero'),photo=hero.querySelector('.hero-photo');
+ photo.removeAttribute('role');photo.removeAttribute('aria-label');
+ const video=document.createElement('video');video.className='hero-film';video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;video.preload='none';video.poster='assets/hero/portfolio-poster.webp';video.setAttribute('aria-hidden','true');
+ const filmSource='assets/hero/portfolio-film.mp4';
+ photo.style.backgroundImage="url('assets/hero/portfolio-poster.webp')";photo.prepend(video);
+ const control=document.createElement('button');control.className='film-control';control.type='button';hero.append(control);
+ const setLabel=()=>{control.textContent=video.paused?t('▶ Luaj videon','▶ Play film'):t('Ⅱ Ndalo videon','Ⅱ Pause film');control.setAttribute('aria-pressed',String(!video.paused));};
+ async function play(){if(!video.getAttribute('src'))video.src=filmSource;try{await video.play();}catch{}setLabel();}
+ control.addEventListener('click',()=>video.paused?play():video.pause());video.addEventListener('play',setLabel);video.addEventListener('pause',setLabel);video.addEventListener('error',()=>{video.hidden=true;control.hidden=true;});setLabel();
+ hero.querySelector('.photo-tag').textContent=t('HL GROUP / NDRIÇIM & DETAJE','HL GROUP / LIGHTING & DETAILS');
+ hero.querySelector('.hero-note').innerHTML='<span>'+t('PUNËT TONA NË LËVIZJE','OUR WORK IN MOTION')+'</span><p>'+t('Drita e ndryshon hapësirën.','Light transforms a space.')+'<small>'+t('Pamje reale nga projektet tona.','Real images from our projects.')+'</small></p>';
+ if(!reduced.matches&&!navigator.connection?.saveData)play();
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();});
+ new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)video.pause();},{threshold:.05}).observe(hero);
+ reduced.addEventListener('change',()=>{if(reduced.matches)video.pause();});
+ const featured=document.createElement('section');featured.className='section featured';featured.id='te-vecuara';
+ featured.innerHTML='<div class="section-head"><div><p class="eyebrow">'+t('NË FOKUS','IN FOCUS')+'</p><h2>'+t('Punë që flasin<br>për veten.','Work that speaks<br>for itself.')+'</h2></div><p>'+t('Tre projekte, tri hapësira të ndryshme. Një vëmendje e përbashkët ndaj çdo detaji.','Three projects, three different spaces. The same attention to every detail.')+'</p></div><div class="featured-grid"></div>';
+ document.querySelector('#projektet').before(featured);
+ ['hotel-hillton','autosallon-alberit','fakulteti-zagreb'].forEach((id,i)=>{const p=window.HL_PROJECTS.find(x=>x.id===id);if(!p)return;const b=document.createElement('button');b.type='button';b.className='featured-card';const img=document.createElement('img');img.src='assets/'+(p.thumbnail||p.images[0]);img.alt=p.title;img.loading='lazy';b.append(img);const copy=document.createElement('span');copy.className='featured-copy';const over=document.createElement('small');over.textContent='0'+(i+1)+' / '+p.category;const title=document.createElement('strong');title.textContent=p.title;const more=document.createElement('span');more.textContent=t('Eksploro projektin ↗','Explore project ↗');copy.append(over,title,more);b.append(copy);b.addEventListener('click',()=>openProject(p));featured.querySelector('.featured-grid').append(b);});
+ const region=document.createElement('section');region.className='section region';region.id='harta';
+ region.innerHTML='<div class="section-head"><div><p class="eyebrow">'+t('KU KEMI PUNUAR','WHERE WE HAVE WORKED')+'</p><h2>'+t('Puna jonë.<br>Përtej kufijve.','Our work.<br>Across borders.')+'</h2></div><p>'+t('Zgjidhni një shtet në hartë për të parë projektet me lokacion të konfirmuar.','Choose a country on the map to explore projects with confirmed locations.')+'</p></div><div class="region-layout"><div class="region-map"><svg viewBox="0 0 620 450" role="img" aria-label="'+t('Hartë orientuese e lokacioneve në rajon','Schematic regional location map')+'"><defs><pattern id="map-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff0c"/></pattern></defs><rect width="620" height="450" fill="url(#map-grid)"/><path d="M140 100 Q230 90 360 290 L330 385 M360 290 L270 305" fill="none" stroke="#b6c879" stroke-width="1.5" stroke-dasharray="5 9"/><text x="30" y="420" fill="#8b9980" font-size="12">'+t('HARTË ORIENTUESE · RAJONI','SCHEMATIC MAP · REGION')+'</text></svg><div class="map-pins"></div></div><div class="region-detail"><p class="eyebrow">'+t('EKSPLORO SIPAS SHTETIT','EXPLORE BY COUNTRY')+'</p><h3 id="region-title"></h3><p id="region-count" role="status"></p><div id="region-projects"></div><a class="text-link" href="#projektet" id="region-all">'+t('Shiko në portofol ↓','View in portfolio ↓')+'</a></div></div>';
+ document.querySelector('#nderkombetare').before(region);
+ const countries=[['Kosovë','Kosovo',58,64],['Kroaci','Croatia',23,22],['Shqipëri','Albania',53,86],['Mali i Zi','Montenegro',43,68]];
+ let selectedCountry;
+ function selectCountry(name){selectedCountry=name;region.querySelectorAll('.map-pin').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.region===name)));const items=window.HL_PROJECTS.filter(p=>p.country===name);region.querySelector('#region-title').textContent=name;region.querySelector('#region-count').textContent=items.length+' '+t('projekte në portofol','projects in the portfolio');const list=region.querySelector('#region-projects');list.replaceChildren();items.forEach(p=>{const b=document.createElement('button');b.type='button';b.textContent=p.title+' ↗';b.addEventListener('click',()=>openProject(p));list.append(b);});}
+ countries.forEach(([sq,eng,x,y])=>{const b=document.createElement('button');b.type='button';b.className='map-pin';b.dataset.region=t(sq,eng);b.style.left=x+'%';b.style.top=y+'%';b.textContent=t(sq,eng);b.addEventListener('click',()=>selectCountry(t(sq,eng)));region.querySelector('.map-pins').append(b);});selectCountry(t('Kosovë','Kosovo'));
+ region.querySelector('#region-all').addEventListener('click',()=>{document.querySelector('#project-search').value='';document.querySelector('#project-type').value='all';[...document.querySelectorAll('[data-country]')].find(b=>b.dataset.country===selectedCountry)?.click();});
+ if(!reduced.matches&&'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');observer.unobserve(e.target);} }),{threshold:.08});document.querySelectorAll('.section-head,.featured-card,.services article,.steps article,.region-layout').forEach(el=>{el.classList.add('reveal');observer.observe(el);});}
+})();
+
+
