@@ -9,12 +9,14 @@
  const control=document.createElement('button');control.className='film-control';control.type='button';hero.append(control);
  const setLabel=()=>{control.textContent=video.paused?t('▶︎ Luaj videon','▶︎ Play film'):t('Ⅱ Ndalo videon','Ⅱ Pause film');control.setAttribute('aria-pressed',String(!video.paused));};
  async function play(){if(!video.getAttribute('src'))video.src=filmSource;try{await video.play();}catch{}setLabel();}
- control.addEventListener('click',()=>video.paused?play():video.pause());video.addEventListener('play',setLabel);video.addEventListener('pause',setLabel);video.addEventListener('error',()=>{video.hidden=true;control.hidden=true;});setLabel();
+ let userPaused=false,heroVisible=true;
+ control.addEventListener('click',()=>{userPaused=!video.paused;userPaused?video.pause():play();});video.addEventListener('play',setLabel);video.addEventListener('pause',setLabel);video.addEventListener('error',()=>{video.hidden=true;control.hidden=true;});setLabel();
  hero.querySelector('.photo-tag').textContent=t('HL GROUP / NDRIÇIM & DETAJE','HL GROUP / LIGHTING & DETAILS');
  hero.querySelector('.hero-note').innerHTML='<span>'+t('PUNËT TONA NË LËVIZJE','OUR WORK IN MOTION')+'</span><p>'+t('Drita e ndryshon hapësirën.','Light transforms a space.')+'<small>'+t('Pamje reale nga projektet tona.','Real images from our projects.')+'</small></p>';
  if(!reduced.matches&&!navigator.connection?.saveData)play();
- document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();});
- new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)video.pause();},{threshold:.05}).observe(hero);
+ const resume=()=>{if(!userPaused&&heroVisible&&!document.hidden&&!reduced.matches&&video.getAttribute('src')&&video.paused)play();};
+ document.addEventListener('visibilitychange',()=>document.hidden?video.pause():resume());
+ new IntersectionObserver(entries=>{heroVisible=entries[0].isIntersecting;heroVisible?resume():video.pause();},{threshold:.05}).observe(hero);
  reduced.addEventListener('change',()=>{if(reduced.matches)video.pause();});
  const featured=document.createElement('section');featured.className='section featured';featured.id='te-vecuara';
  featured.innerHTML='<div class="section-head"><div><p class="eyebrow">'+t('NË FOKUS','IN FOCUS')+'</p><h2>'+t('Punë që flasin<br>për veten.','Work that speaks<br>for itself.')+'</h2></div><p>'+t('Tre projekte, tri hapësira të ndryshme. Një vëmendje e përbashkët ndaj çdo detaji.','Three projects, three different spaces. The same attention to every detail.')+'</p></div><div class="featured-grid"></div>';
