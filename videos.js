@@ -24,12 +24,12 @@
       video.setAttribute('aria-label', project.title + ' — Video ' + (index + 1));
       const play = document.createElement('button'); play.type = 'button'; play.className = 'video-play-overlay';
       play.setAttribute('aria-label', (en ? 'Play video ' : 'Luaj videon ') + (index + 1) + ': ' + project.title);
-      const icon = document.createElement('span'); icon.className = 'video-play-circle'; icon.textContent = '▶'; icon.setAttribute('aria-hidden', 'true');
+      const icon = document.createElement('span'); icon.className = 'video-play-circle'; icon.textContent = '▶︎'; icon.setAttribute('aria-hidden', 'true');
       const label = document.createElement('span'); label.className = 'video-play-label'; label.textContent = (en ? 'Play video' : 'Luaj videon');
       play.append(icon, label);
       const caption = document.createElement('div'); caption.className = 'video-card-caption';
       const title = document.createElement('span'); title.textContent = 'Video ' + (index + 1);
-      const link = document.createElement('a'); link.href = 'assets/' + path; link.target = '_blank'; link.rel = 'noopener'; link.textContent = en ? 'Open separately ↗' : 'Hap veçmas ↗';
+      const link = document.createElement('a'); link.href = 'assets/' + path; link.target = '_blank'; link.rel = 'noopener'; link.textContent = en ? 'Open separately ↗︎' : 'Hap veçmas ↗︎';
       caption.append(title, link);
       play.addEventListener('click', () => {
         choices.querySelectorAll('video').forEach(other => { if (other !== video) other.pause(); });
