@@ -1,13 +1,47 @@
-.gallery-thumbs{display:flex;gap:9px;overflow-x:auto;padding:5px 2px 13px;margin:0 0 20px;position:relative;scrollbar-width:thin}.gallery-thumbs button{flex:0 0 75px;height:65px;padding:3px;background:transparent;border:2px solid transparent;border-radius:5px}.gallery-thumbs button[aria-pressed=true]{border-color:#526b32;background:#dce5c9}.gallery-thumbs img{width:100%;height:100%;object-fit:cover;border-radius:2px}.expand-photo{display:block;margin:14px auto 0;min-height:44px;padding:10px 20px;border:1px solid #9eaa8f;background:transparent;color:#293a1d;font-size:13px}.photo-lightbox{position:fixed;inset:0;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0;padding:0;border:0;background:#10140f;color:#fff;overflow:hidden}.photo-lightbox[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}.lightbox-toolbar{display:flex;justify-content:space-between;align-items:center;padding:15px 24px;gap:14px;background:#1c241a}.lightbox-title{font-size:14px;line-height:1.4}.lightbox-toolbar>div{display:flex;gap:8px;align-items:center;flex-shrink:0}.photo-lightbox button{background:#2b3724;border:1px solid #738263;color:#fff;min-width:44px;min-height:44px;font-size:18px;padding:7px 12px}.photo-lightbox button:disabled{opacity:.4}.zoom-value{font-size:12px;min-width:40px;text-align:center}.lightbox-stage{overflow:auto;min-height:0;min-width:0;overscroll-behavior:contain}.lightbox-stage img{display:block;width:100%;height:100%;max-width:none;max-height:100%;object-fit:contain;cursor:zoom-in}.lightbox-nav{display:flex;align-items:center;justify-content:center;gap:25px;padding:10px;background:#1c241a;font-size:13px}.brochure-link{margin-top:25px}@media(max-width:600px){.lightbox-toolbar{padding:10px;flex-wrap:wrap;gap:8px}.lightbox-title{width:100%;font-size:12px}.lightbox-toolbar>div{width:100%;justify-content:center}.gallery-thumbs button{flex-basis:64px;height:58px}}
+/* Project photo gallery — kept deliberately simple: photo, arrows, counter, thumbnails. */
+.dialog-copy .gallery-controls{display:none}
+.gallery-thumbs{display:flex;gap:8px;overflow-x:auto;padding:4px 4px 6px;margin:18px -4px 22px;scrollbar-width:none}
+.gallery-thumbs::-webkit-scrollbar{display:none}
+.gallery-thumbs[hidden]{display:none}
+.gallery-thumbs button{flex:0 0 64px;height:48px;padding:0;background:none;border:0;opacity:.55;transition:opacity .2s}
+.gallery-thumbs button:hover{opacity:.85}
+.gallery-thumbs button[aria-pressed=true]{opacity:1;box-shadow:0 0 0 2px var(--cream),0 0 0 4px #526b32}
+.gallery-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.brochure-link{display:flex;width:max-content;max-width:100%;margin-top:40px}
 
-/* Navigation stays beside the photograph in both gallery views. */
-.project-photo-frame,.lightbox-photo-frame{position:relative;min-width:0;min-height:0}
-.project-photo-frame{background:#10140f}
-.project-photo-frame>img{display:block;width:100%;height:52vh;object-fit:contain}
-.lightbox-photo-frame>.lightbox-stage{height:100%}
-#project-dialog .photo-side-arrow,.photo-lightbox .photo-side-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;display:grid;place-items:center;width:48px;height:48px;min-width:44px;min-height:44px;padding:0;border:1px solid #ffffff80;border-radius:50%;background:#101827d9;color:#fff;font-size:25px;line-height:1;cursor:pointer;box-shadow:0 2px 12px #0005}
-.photo-arrow-prev{left:14px}.photo-arrow-next{right:14px}
-#project-dialog .photo-side-arrow:hover,.photo-lightbox .photo-side-arrow:hover{background:#344b2e}
+/* Photo in the pop-up */
+.project-photo-frame{position:relative;min-width:0;background:#10140f}
+.project-photo-frame>img{display:block;width:100%;height:56vh;object-fit:contain;cursor:zoom-in}
+.project-photo-frame #gallery-count{position:absolute;left:14px;bottom:14px;z-index:2;padding:5px 11px;border-radius:20px;background:#151714b3;color:#f2f1e9;font-size:12px;letter-spacing:.5px;pointer-events:none}
+
+#project-dialog>.close{border:0;border-radius:50%;background:#15171499;color:#fff;font-size:24px;line-height:1}
+#project-dialog>.close:hover{background:#151714e6}
+
+/* Arrows */
+#project-dialog .photo-side-arrow,.photo-lightbox .photo-side-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:#15171499;color:#fff;font-size:20px;line-height:1;cursor:pointer;transition:background .2s}
+#project-dialog .photo-side-arrow:hover,.photo-lightbox .photo-side-arrow:hover{background:#151714e6}
+.photo-side-arrow[hidden]{display:none!important}
+.photo-arrow-prev{left:12px}
+.photo-arrow-next{right:12px}
 .photo-side-arrow:focus-visible{outline:3px solid #d7eaa4;outline-offset:3px}
-.dialog-copy .gallery-controls{justify-content:center}
-@media(max-width:700px){.project-photo-frame>img{height:38vh}.photo-arrow-prev{left:8px}.photo-arrow-next{right:8px}#project-dialog .photo-side-arrow,.photo-lightbox .photo-side-arrow{width:44px;height:44px;font-size:23px}}
+
+/* Full-screen view */
+.photo-lightbox{position:fixed;inset:0;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0;padding:0;border:0;background:#0d100c;color:#fff;overflow:hidden}
+.photo-lightbox[open]{display:block}
+.photo-lightbox::backdrop{background:#0d100c}
+.lightbox-photo-frame{position:absolute;inset:0}
+.lightbox-photo-frame>img{width:100%;height:100%;object-fit:contain;display:block;cursor:zoom-out}
+.lightbox-close{position:absolute;top:14px;right:14px;z-index:3;width:44px;height:44px;border:0;border-radius:50%;background:#15171499;color:#fff;font-size:26px;line-height:1;cursor:pointer}
+.lightbox-close:hover{background:#151714e6}
+.lightbox-count{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:3;padding:5px 12px;border-radius:20px;background:#15171499;font-size:13px}
+
+/* Videos: just the player */
+.project-videos>p:not(#video-status),.video-card-caption,.video-play-label{display:none}
+
+@media(max-width:700px){
+  .project-photo-frame>img{height:42vh}
+  .photo-arrow-prev{left:8px}
+  .photo-arrow-next{right:8px}
+  #project-dialog .photo-side-arrow,.photo-lightbox .photo-side-arrow{width:40px;height:40px;font-size:18px}
+  .gallery-thumbs button{flex-basis:56px;height:42px}
+}

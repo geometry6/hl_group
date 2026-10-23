@@ -39,7 +39,7 @@
         if (attempt) attempt.catch(() => {
           if (generation !== current) return;
           play.hidden = false;
-          status.textContent = en ? 'Tap play to start, or open the video separately.' : 'Prekni luaj për ta nisur, ose hapeni videon veçmas.';
+          status.textContent = en ? 'Tap play again to start.' : 'Prekni përsëri luaj për ta nisur.';
         });
       });
       video.addEventListener('play', () => {
@@ -49,7 +49,7 @@
       video.addEventListener('error', () => {
         if (generation !== current || !video.getAttribute('src')) return;
         play.hidden = false;
-        status.textContent = en ? 'Unable to play. Try opening the video separately.' : 'Videoja nuk po luhet. Provoni ta hapni veçmas.';
+        status.textContent = en ? 'This video could not be played.' : 'Videoja nuk mund të luhet.';
       });
       frame.append(video, play); card.append(frame, caption); choices.append(card);
     });
