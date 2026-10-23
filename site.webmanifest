@@ -1,0 +1,11 @@
+{
+  "name": "HL Group",
+  "short_name": "HL Group",
+  "start_url": "/",
+  "theme_color": "#151714",
+  "background_color": "#151714",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
