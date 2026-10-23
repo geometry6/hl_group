@@ -21,5 +21,5 @@
  function step(n){photoIndex=(photoIndex+n+activeProject.images.length)%activeProject.images.length;showPhoto();}
  lightbox.querySelector('.lightbox-prev').addEventListener('click',()=>step(-1));lightbox.querySelector('.lightbox-next').addEventListener('click',()=>step(1));
  lightbox.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'&&zoom===1){e.preventDefault();step(-1);}if(e.key==='ArrowRight'&&zoom===1){e.preventDefault();step(1);}if(e.key==='+'||e.key==='='){e.preventDefault();setZoom(zoom+.5);}if(e.key==='-'){e.preventDefault();setZoom(zoom-.5);}});
- const brochure=document.createElement('a');brochure.className='button brochure-link';brochure.href='assets/HL-Group-Brochure-'+(en?'EN':'SQ')+'.pdf';brochure.target='_blank';brochure.rel='noopener';brochure.textContent=t('Shiko broshurën PDF ↗︎','View company brochure ↗︎');document.querySelector('#rreth .body-copy').parentElement.append(brochure);
+ const brochure=document.createElement('a');brochure.className='button brochure-link';brochure.href='assets/HL-Group-Brochure-'+(en?'EN':'SQ')+'.pdf';brochure.target='_blank';brochure.rel='noopener';brochure.textContent=t('Shkarko broshurën PDF ↓','Download company brochure ↓');document.querySelector('#rreth .body-copy').parentElement.append(brochure);
 })();
