@@ -40,7 +40,7 @@ window.HL_PROJECTS = [
       "projects/autosallon-alberit/selected-12.webp"
     ],
     "thumbnail": "projects/autosallon-alberit/cover.webp",
-    "title": "Alberit car showroom",
+    "title": "Alberti car showroom",
     "country": "",
     "city": "",
     "category": "Commercial",
